@@ -1,7 +1,12 @@
 version: "3.9"
 services:
-  web:
+  app:
     build: .
-    image: web
+    image: app
     ports:
       - "8000:80"
+    volumes:
+      - ./app:/code/app
+    # entrypoint: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
+    entrypoint: tail -f /dev/null
+
