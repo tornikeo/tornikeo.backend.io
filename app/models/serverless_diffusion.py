@@ -7,7 +7,7 @@ from io import BytesIO
 from PIL import Image
 import os
 import gradio as gr
-from ratelimit import limits
+# from ratelimit import limits
 
 # FIFTEEN_MINUTES = 900
 # @limits(calls=15, period=FIFTEEN_MINUTES)
