@@ -13,16 +13,20 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+from models import serverless_diffusion
 
-# Note: the route decorator must be above the limit decorator, not below it
 @app.get("/expensive")
 @limiter.limit("5/minute")
 async def homepage(request: Request, response: Response):
     return {"key": "value"}
 
+
+app.mount('/serverless_diffusion', serverless_diffusion.gradio_app())
+
 @app.get("/")
 def read_main():
     return {"message": "This is your main app"}
+
 
 
 # GRADIO_ROOT = "/gradio"

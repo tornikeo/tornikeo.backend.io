@@ -7,6 +7,10 @@ services:
       - "8000:80"
     volumes:
       - ./app:/code/app
+    env_file:
+      - .env
+    volumes:
+      - ./app/gradio_cached_examples:containerPath
     # entrypoint: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
     entrypoint: tail -f /dev/null
 

@@ -2,7 +2,7 @@ pydantic>=1.8.0,<2.0.0
 uvicorn>=0.15.0,<0.16.0
 fastapi>=0.85.0
 slowapi
-gradio
+gradio>=3.8
 python-multipart
 banana-dev
 
