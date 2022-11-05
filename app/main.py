@@ -15,7 +15,7 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-from models import serverless_diffusion
+from models import serverless_diffusion, serverless_repcount
 
 @app.get("/expensive")
 @limiter.limit("5/minute")
@@ -24,6 +24,7 @@ async def homepage(request: Request, response: Response):
 
 
 app.mount('/serverless_diffusion', serverless_diffusion.gradio_app())
+app.mount('/serverless_repcount', serverless_repcount.gradio_app())
 
 @app.get("/")
 def read_main():

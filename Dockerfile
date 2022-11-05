@@ -12,4 +12,4 @@ COPY ./app /code/app
 # Copy .env file as well (temporary fix, I guess)
 COPY .env .
 RUN pip install python-dotenv
-ENTRYPOINT uvicorn main:app --host 0.0.0.0 --port ${PORT}
+ENTRYPOINT uvicorn main:app --host 0.0.0.0 --port ${PORT} --reload --log-level debug

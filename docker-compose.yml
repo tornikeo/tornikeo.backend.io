@@ -4,15 +4,15 @@ services:
     build: .
     image: app
     ports:
-      - "8000:80"
+      - "8192:8129"
     env_file:
       - .env
+    environment:
+      - PORT=8129
     volumes:
       - ./app:/code/app
       - gradio_cached_examples:/code/app/gradio_cached_examples
       - flagged:/code/app/flagged
-    # entrypoint: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
-    # entrypoint: tail -f /dev/null
 volumes:
   gradio_cached_examples:
   flagged:
