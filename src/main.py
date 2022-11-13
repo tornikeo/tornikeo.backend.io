@@ -15,7 +15,7 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-from models import serverless_diffusion, serverless_repcount, serverless_superres
+from src.models import serverless_diffusion, serverless_repcount, serverless_superres
 
 @app.get("/expensive")
 @limiter.limit("5/minute")

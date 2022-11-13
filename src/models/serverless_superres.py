@@ -8,10 +8,10 @@ import gradio as gr
 
 # FIFTEEN_MINUTES = 900
 # @limits(calls=15, period=FIFTEEN_MINUTES)
-def run(img_lq: Image) -> Image.Image:
+def run(img_lq: Image.Image) -> Image.Image:
     img_file = BytesIO()
-    Image.save(img_file)
-    image_base64 = base64.b64encode(img_file)
+    img_lq.save(img_file, format="JPEG")
+    image_base64 = base64.b64encode(img_file.getvalue()).decode('utf-8')
 
     api_key = os.getenv("BANANA_API_KEY")
     model_key = os.getenv("BANANA_SUPERRES_MODEL_KEY")
@@ -32,16 +32,16 @@ def gradio_app():
     io = gr.Interface(
         fn=run,
         inputs=[
-            gr.components.Image(type='pil')
+            gr.components.Image(
+                value="https://i.imgur.com/MJGadMM.png", 
+                type='pil'
+            )
         ], 
         outputs=[
             gr.components.Image(type='pil')
         ],
-        # examples=[
-        #     ["Big red apple on a branch of a tree.", 50, 0],
-        #     ["A pair of modern NIKE shoes, with iridescent color.", 50, 0],
-        # ],
-        # cache_examples=True,
+        examples=["https://i.imgur.com/MJGadMM.png"],
+        cache_examples=True,
     )
     io.show_error = True
     return gr.routes.App.create_app(io)
