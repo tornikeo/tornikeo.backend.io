@@ -5,6 +5,6 @@ slowapi
 gradio>=3.8
 python-multipart
 banana-dev
-
+python-dotenv
 # We have to return images
 Pillow

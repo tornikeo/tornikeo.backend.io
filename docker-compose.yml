@@ -10,9 +10,10 @@ services:
     environment:
       - PORT=8129
     volumes:
-      - ./app:/code/app
+      - .:/code/app
       - gradio_cached_examples:/code/app/gradio_cached_examples
       - flagged:/code/app/flagged
+    entrypoint: /bin/bash
 volumes:
   gradio_cached_examples:
   flagged:
