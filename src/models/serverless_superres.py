@@ -33,15 +33,20 @@ def gradio_app():
         fn=run,
         inputs=[
             gr.components.Image(
-                value="https://i.imgur.com/MJGadMM.png", 
+                label="Input low quality image",
+                value="https://i.imgur.com/Lf48kT8.jpg", 
                 type='pil'
             )
         ], 
         outputs=[
             gr.components.Image(type='pil')
         ],
-        examples=["https://i.imgur.com/MJGadMM.png"],
-        cache_examples=True,
+        examples=[
+            ["https://i.imgur.com/Lf48kT8.jpg"],
+            ["https://i.imgur.com/47nHl0J.jpg"],
+            ["https://i.imgur.com/jnWwEN7.jpg"],
+        ],
+        # cache_examples=True,
     )
     io.show_error = True
     return gr.routes.App.create_app(io)

@@ -10,17 +10,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 logger = logging.getLogger(__name__)  
-limiter = Limiter(key_func=get_remote_address)
+# limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+# app.state.limiter = limiter
+# app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 from src.models import serverless_diffusion, serverless_repcount, serverless_superres
 
-@app.get("/expensive")
-@limiter.limit("5/minute")
-async def homepage(request: Request, response: Response):
-    return {"key": "value"}
+# @app.get("/expensive")
+# @limiter.limit("5/minute")
+# async def homepage(request: Request, response: Response):
+#     return {"key": "value"}
 
 
 app.mount('/serverless_diffusion', serverless_diffusion.gradio_app())

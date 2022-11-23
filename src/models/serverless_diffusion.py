@@ -38,13 +38,13 @@ def gradio_app():
     io = gr.Interface(
         fn=run,
         inputs=[
-            gr.components.Textbox("interior design, open plan, kitchen and living room, modular furniture with cotton textiles, wooden floor, high ceiling, large steel windows viewing a city.", 
+            gr.components.Textbox("A beautiful portrait of a cyberpunk goddess by greg rutkowski and raymond swanland, trending on artstation, ultra realistic digital art", 
                 label="Please draw the following..."),
             gr.components.Slider(256, 512, 512, step=4, label='Image height'),
             gr.components.Slider(256, 512, 512, step=4, label='Image Width'),
-            gr.components.Slider(0, 100, 13, label='Random initial seed'),
-            gr.components.Slider(15, 50, 50, step=1, label='(Advanced) Number of diffusion steps (higher = more details)'),
-            gr.components.Slider(1, 10, 9, step=1, label='(Advanced) Scale of diffusion steps (higher = more randomness)'),
+            gr.components.Number(2099650082, label='Random initial seed'),
+            gr.components.Number(50, label='(Advanced) Number of diffusion steps'),
+            gr.components.Number(7, label='(Advanced) Guidance scale'),
         ], 
         outputs=[
             gr.components.Image(type='pil')
